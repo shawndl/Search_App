@@ -26,7 +26,8 @@ describe('Vuex Search Module Getters', () => {
         current: 1,
         display: 10
       },
-      results: results
+      results: results,
+      full: []
     }
   })
 

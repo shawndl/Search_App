@@ -19,6 +19,16 @@ describe('Vuex Search Module Actions', () => {
       { type: 'SET_RESULTS', payload: [1, 2, 3] }
     ], done, expect)
   })
+  it('onNext: set paginate must call the ON_NEXT commit', (done) => {
+    testAction(actions.onNext, null, newState, [
+      { type: 'ON_NEXT', payload: null }
+    ], done, expect)
+  })
+  it('onPrevious: set paginate must call the ON_PREVIOUS commit', (done) => {
+    testAction(actions.onPrevious, null, newState, [
+      { type: 'ON_PREVIOUS', payload: null }
+    ], done, expect)
+  })
   it('setPaginate: set paginate must call the SET_PAGINATE commit with the payload', (done) => {
     testAction(actions.setPaginate, { pages: 3, current: 2, display: 10 }, newState, [
       { type: 'SET_PAGINATE', payload: { pages: 3, current: 2, display: 10 } }

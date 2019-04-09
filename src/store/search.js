@@ -18,7 +18,8 @@ const state = {
     current: 1,
     display: 10
   },
-  results: []
+  results: [],
+  full: []
 }
 
 /**
@@ -68,8 +69,20 @@ const mutations = {
   SET_PAGINATE (state, payload) {
     state.paginate = payload
   },
+  ON_NEXT (state) {
+    if (state.paginate.current < state.paginate.pages) {
+      state.paginate.current++
+    }
+  },
+  ON_PREVIOUS (state) {
+    if (state.paginate.current > 1) {
+      state.paginate.current--
+    }
+  },
   SET_RESULTS (state, payload) {
     state.results = payload
+    state.full = payload
+    state.paginate.pages = Math.ceil(payload.length / state.paginate.display)
   },
   ON_RESET (state) {
     state.filters.search = ''
@@ -87,6 +100,12 @@ const actions = {
   },
   setPaginate ({ commit, state }, payload) {
     commit('SET_PAGINATE', payload)
+  },
+  onNext ({ commit, state }) {
+    commit('ON_NEXT')
+  },
+  onPrevious ({ commit }) {
+    commit('ON_PREVIOUS')
   },
   onReset ({ commit, state }, payload) {
     commit('ON_RESET', payload)

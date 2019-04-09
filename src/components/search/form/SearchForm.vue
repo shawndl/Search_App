@@ -14,14 +14,19 @@
                   label="Sort By...">
         </v-select>
       </v-flex>
-      <v-flex sm4>
+      <v-flex sm1>
         <v-checkbox v-model="sortAsc" label="ASC"></v-checkbox>
+      </v-flex>
+      <v-flex sm3>
+        <v-btn @click="onReset">Reset</v-btn>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   computed: {
     search: {
@@ -54,7 +59,12 @@ export default {
     return {
       sorts: ['none', 'title', 'rate']
     }
-  }
+  },
+  methods: {
+    ...mapActions({
+      'onReset': 'search/onReset'
+    })
+  },
 }
 </script>
 

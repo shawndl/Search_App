@@ -3,9 +3,11 @@
     <BaseHeader />
     <SearchForm />
     <v-card class="pa-5" color="#f9f9f9">
-      {{ results }}
-      <KintellCards />
-      <BasePaginator />
+      <KintellCards v-if="results" :results="results" />
+      <BasePaginator :pages="paginate.pages"
+                     :current="paginate.current"
+                     @previous="onPrevious"
+                     @next="onNext" />
     </v-card>
   </div>
 </template>
@@ -31,9 +33,10 @@ export default {
   methods: {
     ...mapActions({
       setResults: 'search/setResults',
-      setPaginate: 'search/setPaginate'
+      onNext: 'search/onNext',
+      onPrevious: 'search/onPrevious'
     })
-  },
+  }
 }
 </script>
 
