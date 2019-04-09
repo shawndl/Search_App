@@ -43,12 +43,13 @@ const getters = {
     if (clone.filters.search !== '') {
       clone.results = clone.results
         .filter(kintell => kintell.title.toLowerCase()
-          .includes(clone.filters.search.toLowerCase()))
+          .includes(state.filters.search.toLowerCase()))
     }
     if (clone.sort.type !== 'none') {
       clone.results = sortBy(clone.sort.type, clone.results, clone.sort.asc)
     }
     clone.results = paginate(state.paginate.current, state.paginate.display, clone.results)
+
     return clone.results
   }
 }
@@ -61,6 +62,9 @@ const mutations = {
     state.filters.search = payload
   },
   SET_SORT_TYPE (state, payload) {
+    if (payload === 'none') {
+      state.results = [ ...state.full ]
+    }
     state.sort.type = payload
   },
   SET_SORT_ASC (state, payload) {
@@ -81,12 +85,13 @@ const mutations = {
   },
   SET_RESULTS (state, payload) {
     state.results = payload
-    state.full = payload
+    state.full = [ ...payload ]
     state.paginate.pages = Math.ceil(payload.length / state.paginate.display)
   },
   ON_RESET (state) {
     state.filters.search = ''
     state.sort = { type: 'none', asc: true }
+    state.results = [ ...state.full ]
   }
 }
 
