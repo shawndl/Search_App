@@ -2,14 +2,16 @@
   <v-container grid-list-md text-xs-center>
     <v-layout row wrap>
       <v-flex sm5 offset-sm7>
-        Pages {{ current }} of {{ pages }}
+        <span id="paginateInfo">Page {{ current }} of {{ pages }}</span>
         <v-btn @click="$emit('previous')"
+               id="nextPaginate"
                :disabled="(current === 1)">
-          Previous
+          PREV PAGE
         </v-btn>
         <v-btn @click="$emit('next')"
+               id="prevPaginate"
                :disabled="(current === pages)">
-          Next
+          NEXT PAGE
         </v-btn>
       </v-flex>
     </v-layout>
