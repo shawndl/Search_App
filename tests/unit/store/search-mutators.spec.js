@@ -3,7 +3,7 @@ import * as search from '@/store/search'
 
 const { mutations, state } = search.default
 
-describe('search', () => {
+describe('Vuex Search Module Mutator', () => {
   it('SET_SEARCH: mutator must be able to change the text state', () => {
     mutations.SET_SEARCH(state, 'changed')
     expect(state.filters.search).to.equal('changed')

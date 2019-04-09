@@ -91,4 +91,17 @@ describe('Vuex Search Module Getters', () => {
       { 'id': 1, 'title': 'UK business insurance law', 'rate': 4.9 }
     ])
   })
+  it('results: get must be able to paginate results', () => {
+    testState.paginate.display = 1
+    expect(getters.results(testState)).to.deep.equal([
+      { 'id': 1, 'title': 'Pensions funding', 'rate': 3.5 }
+    ])
+  })
+  it('results: get must be able to paginate results and return the correct page', () => {
+    testState.paginate.display = 1
+    testState.paginate.current = 2
+    expect(getters.results(testState)).to.deep.equal([
+      { 'id': 1, 'title': 'Business immigration', 'rate': 2.9 }
+    ])
+  })
 })

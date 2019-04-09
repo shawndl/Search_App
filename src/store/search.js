@@ -82,7 +82,6 @@ const mutations = {
  */
 const actions = {
   setResults ({ commit }) {
-    console.log('I was called')
     KintellService.get()
       .then(response => commit('SET_RESULTS', response.data.data))
   },

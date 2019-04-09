@@ -6,7 +6,7 @@ import { testAction } from '../helpers'
 
 const { actions } = search.default
 
-describe('search', () => {
+describe('Vuex Search Module Actions', () => {
   let newState
 
   beforeEach(() => {
